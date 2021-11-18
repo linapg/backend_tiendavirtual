@@ -19,6 +19,6 @@ app.use((req, res, next) => {
 });
 var mongoose = require('./db/connection');
 
-app.use(require('./routers/routers'));
+app.use(require('./routers/routes'));
 
 module.exports = app;
