@@ -9,6 +9,8 @@ router.use(function timeLog(req, res, next) {
  
 var productoController = require('../controllers/ProductoController');
 var facturaController = require('../controllers/FacturaController');
+var registroventasController = require('../controllers/registroventasController');
+
 
 //Rutas de producto
 router.get('/productos', productoController.findAll);
@@ -22,5 +24,9 @@ router.get('/consultarfacturas', facturaController.listAllFactura);
 router.get('/consultarfactura/:id', facturaController.listFactura);
 router.put('/actualizarfactura/:id', facturaController.updateFactura);
 router.delete('/eliminarfactura/:id', facturaController.deleteFactura);
+
+//rutas de registroventas
+router.post('/calcRegistroventas', registroventasController.calcRegistroventas);
+router.post('/mostrarRegistroventas', registroventasController.mostrarRegistroventas);
 
 module.exports = router;
