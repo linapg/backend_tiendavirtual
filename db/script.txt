@@ -2,6 +2,7 @@ use tiendavirtual-db;
 db.productos.save ({nombreProducto: 'Arroz Diana', categoria: 'Despensa', proveedor: 'Quala', precioUnitario: 10000, precio: 15000, fechaVencimiento: '2022-03-07', unidad: 80, usuario: 'ginavargas' })
 db.productos.save ({nombreProducto: 'Pasta Doria', categoria: 'Despensa', proveedor: 'Nutresa', precioUnitario: 1500, precio: 3000, fechaVencimiento: '2021-12-03', unidad: 35, usuario: 'ginavargas' })
 db.productos.save ({nombreProducto: 'Harina Pan', categoria: 'Despensa', proveedor: 'Harinera del valle', precioUnitario: 3500, precio: 5200, fechaVencimiento: '2022-01-05', unidad: 24, usuario: 'juanEsteban' })
+db.productos.save ({nombreProducto: 'Chocolate Corona', categoria: 'Despensa', proveedor: 'Nutresa', precioUnitario: 2700, precio: 5200, fechaVencimiento: '2023-01-01', unidad: 42, usuario: 'Liliana Medina' })
 db.productos.find()
 db.productos.find ({unidad: { $gt: 50 } })
 db.productos.find ({usuario:'juanEsteban'});
