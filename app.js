@@ -18,6 +18,7 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
+
 var mongoose = require('./db/connection');
 
 app.use(require('./routers/routes'));

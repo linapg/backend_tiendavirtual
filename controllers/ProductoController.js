@@ -28,7 +28,6 @@ const save = (req, res) => {
         }
 
     });
-
 };
 
 const borrar = (req, resp) => {

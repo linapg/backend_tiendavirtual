@@ -10,6 +10,7 @@ router.use(function timeLog(req, res, next) {
 var productoController = require('../controllers/ProductoController');
 var facturaController = require('../controllers/FacturaController');
 var registroventasController = require('../controllers/registroventasController');
+var usuarioController = require('../controllers/usuarioController');
 
 
 //Rutas de producto
@@ -24,6 +25,12 @@ router.get('/consultarfacturas', facturaController.listAllFactura);
 router.get('/consultarfactura/:id', facturaController.listFactura);
 router.put('/actualizarfactura/:id', facturaController.updateFactura);
 router.delete('/eliminarfactura/:id', facturaController.deleteFactura);
+
+//Rutas de Usuario
+router.post('/crearUsuario', usuarioController.createUser);
+router.get('/consultarUsuario/', usuarioController.findUser);
+router.put('/actualizarUsuario/:id', usuarioController.updateUser);
+router.delete('/eliminarUsuario/:id', usuarioController.deleteUser);
 
 //rutas de registroventas
 router.post('/calcRegistroventas', registroventasController.calcRegistroventas);
