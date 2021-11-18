@@ -1,7 +1,8 @@
 var express = require("express"),
     app = express(),
-    bodyParser = require("body-parser"),
-    methodOverride = require("method-override");
+    bodyParser = require("body-parser")
+    //methodOverride = require("method-override")
+    ;
 mongoose = require('mongoose');
 mongoose.set('debug', true)
 app.use(express.json());
