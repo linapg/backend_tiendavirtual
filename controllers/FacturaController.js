@@ -55,7 +55,7 @@ function updateFactura(req, res) {
 
 function deleteFactura(req, res) {
   var idFactura = req.params.id;
-  Factura.findByIdAndRemove(id, function (err, factura) {
+  Factura.findByIdAndRemove(idFactura, function (err, factura) {
     if (err) {
       return res.json(500, {
         message: "No hemos encontrado la factura",
@@ -64,6 +64,17 @@ function deleteFactura(req, res) {
     return res.json(factura); 
   });
 }
+
+/* exports.deleteFactura = async function (req, res) {
+  const id = req.params.id;
+  libro.findByIdAndDelete(id, function(err, libros){
+    if(!err){
+      res.json(id);
+    } else {
+      console.log('ERROR: ' + err);
+    }
+  });
+} */
 
 module.exports = {
   createFactura,
