@@ -37,4 +37,11 @@ router.delete('/eliminarUsuario/:id', usuarioController.deleteUser);
 router.post('/calcRegistroventas', registroventasController.calcRegistroventas);
 router.post('/mostrarRegistroventas', registroventasController.mostrarRegistroventas);
 
+//Rutas de Inventario
+router.get('/prueba',inventarioController.prueba);
+router.get('/inventario', inventarioController.findAll); 
+router.post('/inventario',inventarioController.saveInventario);
+router.put('/inventario/:id',inventarioController.updateInventario);
+router.delete('/inventario/:id',inventarioController.deleteInventario);
+
 module.exports = router;
