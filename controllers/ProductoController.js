@@ -75,5 +75,5 @@ module.exports = {
     save,
     borrar,
     actualizar,
-    findById
+    findById,
 }
