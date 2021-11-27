@@ -15,6 +15,7 @@ var usuarioController = require('../controllers/usuarioController');
 
 //Rutas de producto
 router.get('/productos', productoController.findAll);
+router.get('/productos/:id', productoController.findById);
 router.post('/productos', productoController.save);
 router.delete('/productos/:id', productoController.borrar);
 router.put('/productos/:id', productoController.actualizar  );

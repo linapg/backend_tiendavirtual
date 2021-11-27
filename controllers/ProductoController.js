@@ -55,9 +55,25 @@ const actualizar = (req, resp) => {
         }
     });
 }
+
+const findById = (req, res, next) => {
+    console.log('findById');
+    Producto.find({_id: req.params.id}).exec((error, resultado) => {
+        if (error) {
+            resp.status(500).send({
+                message: 'Hubo un error al realizar la consulta'
+            });
+        } else {
+            res.status(200).send(resultado);
+        }
+
+    });
+};
+
 module.exports = {
     findAll,
     save,
     borrar,
     actualizar,
+    findById
 }
