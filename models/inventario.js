@@ -10,6 +10,6 @@ var InventarioSchema=Schema({
     precioVenta: Number,
     });
 
-InventarioSchema.index({producto: 1, userId: 1}, {unique: true, background: true});
+//InventarioSchema.index({producto: 1, userId: 1}, {unique: true, background: true});
 const Inventario = mongoose.model('inventario',InventarioSchema);
 module.exports = Inventario;

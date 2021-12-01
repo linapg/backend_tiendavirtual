@@ -4,8 +4,10 @@ const FacturaSchema = new mongoose.Schema({
     tendero: String,
     codigoFactura: String,
     metodo_pago: String,
-    producto: String,
-    cantidad_vendida: Number,
+    producto: {
+        articulos: [Number],
+        cantidad: [Number]
+    },
     total_venta: Number
 },{ timestamps: true });
 

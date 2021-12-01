@@ -1,32 +1,32 @@
 const Factura = require("../models/factura");
-const express = require("express");
+const express = require('express');
 
-function createFactura(req, res) {
-  var newFactura = new Factura(req.body);
-  newFactura.save((err, result) => {
-    res.status(200).send({ message: result });
-  });
-}
-
-function listAllFactura(req, res) {
-  var idFactura = req.params.id;
-  if (!idFactura) {
-    var result = Factura.find({}).sort("nombre");
-  } else {
-    var result = Factura.find({ _id: idFactura });
-  }
-  result.exec(function (err, result) {
-    if (err) {
-      res.status(500).send({ message: "Error al momento de ejecutar la solicitud" });
-    } else {
-      if (!result) {
-        res.status(404).send({ message: "El registro a buscar no se encuentra disponible" });
+const createFactura = (req, res) => {
+  console.log("Guardando productos", req);
+  var factura = new Factura(req.body);
+  factura.save((err, resultado) => {
+      if (err) {
+          res.status(500).send({
+              message: 'Hubo un error al guardar la factura'
+          })
       } else {
-        res.status(200).send({ result });
+          res.status(200).send(resultado);
       }
-    }
   });
-}
+};
+
+const listAllFactura = (req, res, next) => {
+  console.log('findAll');
+  Factura.find().exec((error, resultado) => {
+      if (error) {
+          resp.status(500).send({
+              message: 'Hubo un error al realizar la consulta'
+          });
+      } else {
+          res.status(200).send(resultado);
+      }
+  });
+};
 
 function listFactura(req, res) {
   var idFactura = req.params.id;
@@ -43,38 +43,31 @@ function listFactura(req, res) {
   });
 }
 
-function updateFactura(req, res) {
-  var idFactura = mongoose.Types.ObjectId(req.query.productId);
-  Factura.findOneAndUpdate({ _id: idFactura }, req.body, { new: true }, function (err, Factura) {
-      if (err) 
-        res.send(err);
-      res.json(Factura);
-    }
-  );
-}
-
-function deleteFactura(req, res) {
-  var idFactura = req.params.id;
-  Factura.findByIdAndRemove(idFactura, function (err, factura) {
-    if (err) {
-      return res.json(500, {
-        message: "No hemos encontrado la factura",
-      });
-    }
-    return res.json(factura); 
+const updateFactura = (req, resp) => {
+  console.log('Actualizar factura');
+  Factura.findOneAndUpdate({_id: req.params.id}, req.body, { new: true }, (error, resultado) => {
+      if (error) {
+          resp.status(500).send({
+              message: 'Hubo un error al intentar editar la factura'
+          });
+      } else {
+          resp.status(200).send(resultado);
+      }
   });
 }
 
-/* exports.deleteFactura = async function (req, res) {
-  const id = req.params.id;
-  libro.findByIdAndDelete(id, function(err, libros){
-    if(!err){
-      res.json(id);
-    } else {
-      console.log('ERROR: ' + err);
-    }
+const deleteFactura = (req, resp) => {
+  console.log('deleting', req.params.id);
+  Factura.findOneAndDelete({_id: req.params.id}, (error, resultado) => {
+      if (error) {
+          resp.status(500).send({
+              message: 'Hubo un error al intentar borrar la factura'
+          });
+      } else {
+          resp.status(200).send(resultado);
+      }
   });
-} */
+}
 
 module.exports = {
   createFactura,
