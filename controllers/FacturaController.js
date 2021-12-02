@@ -2,7 +2,7 @@ const Factura = require("../models/factura");
 const express = require('express');
 
 const createFactura = (req, res) => {
-  console.log("Guardando productos", req);
+  console.log("Guardando facturas", req);
   var factura = new Factura(req.body);
   factura.save((err, resultado) => {
       if (err) {
@@ -16,7 +16,7 @@ const createFactura = (req, res) => {
 };
 
 const listAllFactura = (req, res, next) => {
-  console.log('findAll');
+  console.log('Consultando facturas');
   Factura.find().exec((error, resultado) => {
       if (error) {
           resp.status(500).send({
@@ -28,27 +28,26 @@ const listAllFactura = (req, res, next) => {
   });
 };
 
-function listFactura(req, res) {
-  var idFactura = req.params.id;
-  Factura.findById(idFactura).exec((err, result) => {
-    if (err) {
-      res.status(500).send({ message: "Error al momento de ejecutar la solicitud" });
-    } else {
-      if (!result) {
-        res.status(404).send({ message: "El registro a buscar no se encuentra disponible" });
+const listFactura = (req, res, next) => {
+  console.log('Buscando factura por ID');
+  Factura.find({_id: req.params.id}).exec((error, resultado) => {
+      if (error) {
+          resp.status(500).send({
+              message: 'Hubo un error al realizar la consulta'
+          });
       } else {
-        res.status(200).send({ result });
+          res.status(200).send(resultado);
       }
-    }
+
   });
-}
+};
 
 const updateFactura = (req, resp) => {
   console.log('Actualizar factura');
   Factura.findOneAndUpdate({_id: req.params.id}, req.body, { new: true }, (error, resultado) => {
       if (error) {
           resp.status(500).send({
-              message: 'Hubo un error al intentar editar la factura'
+              message: 'Hubo un error al intentar actualizar la factura'
           });
       } else {
           resp.status(200).send(resultado);
