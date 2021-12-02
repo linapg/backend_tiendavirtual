@@ -49,9 +49,26 @@ const updateUser = (req, resp) => {
     });
 }
 
+const findByIdUser = (req, res, next) => {
+    console.log('findByIdUser');
+    Usuario.find({_id: req.params.id}).exec((error, resultado) => {
+        if (error) {
+            resp.status(500).send({
+                message: 'Hubo un error al realizar la consulta'
+            });
+        } else {
+            res.status(200).send(resultado);
+        }
+
+    });
+};
+
+
+
 module.exports = {
     findUser,
     createUser,
     deleteUser,
-    updateUser
+    updateUser,
+    findByIdUser
 };

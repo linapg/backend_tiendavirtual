@@ -6,12 +6,16 @@ router.use(function timeLog(req, res, next) {
     console.log('Time: ', Date.now());
     next();
   });
- 
+
 var productoController = require('../controllers/ProductoController');
 var facturaController = require('../controllers/FacturaController');
 var registroventasController = require('../controllers/registroventasController');
 var usuarioController = require('../controllers/usuarioController');
+<<<<<<< Updated upstream
 var inventarioController = require('../controllers/InventarioController');
+=======
+var inventarioController = require('../controllers/InventarioController')
+>>>>>>> Stashed changes
 
 
 //Rutas de producto
@@ -39,7 +43,11 @@ router.post('/calcRegistroventas', registroventasController.calcRegistroventas);
 router.post('/mostrarRegistroventas', registroventasController.mostrarRegistroventas);
 
 //Rutas de Inventario
+<<<<<<< Updated upstream
 //router.get('/prueba',inventarioController.prueba);
+=======
+router.get('/prueba', inventarioController.prueba);
+>>>>>>> Stashed changes
 router.get('/inventario', inventarioController.findAll); 
 router.post('/inventario', inventarioController.saveInventario);
 //router.put('/inventario/:id',inventarioController.updateInventario);
